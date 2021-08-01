@@ -28,14 +28,14 @@ namespace Filmes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<FilmeDbContext>(op => op.UseNpgsql(Configuration.GetConnectionString("FilmeConnection")));
+            services.AddDbContext<FilmeDbContext>(op => op.UseNpgsql(Configuration.GetConnectionString("FilmeConnection")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Filmes", Version = "v1" });
             });
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

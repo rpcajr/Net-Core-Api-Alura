@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Filmes.Models
+namespace Filmes.Models.Dto
 {
-    public class Filme
+    public class ReadFilmeDto
     {
         [Key]
         [Required]
@@ -19,7 +19,7 @@ namespace Filmes.Models
         public string Genero { get; set; }
 
         [Required(ErrorMessage = "O campo Duração é obrigatório")]
-        [Range(1,600, ErrorMessage = "A duração deve ter no mínimo 1 e no máximo 600 minutos")]
+        [Range(1, 600, ErrorMessage = "A duração deve ter no mínimo 1 e no máximo 600 minutos")]
         public int Duracao { get; set; }
     }
 }
