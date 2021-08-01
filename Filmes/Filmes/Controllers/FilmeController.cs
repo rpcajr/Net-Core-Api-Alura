@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Canducci.Pagination;
 using Filmes.Data;
 using Filmes.Models;
 using Filmes.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Filmes.Controllers
 {
@@ -32,9 +35,10 @@ namespace Filmes.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Filme> RecuperarFilmes()
+        public IActionResult RecuperarFilmes(int page = 1, int pagesize = 10)
         {
-            return _context.Filmes;
+            var result = _context.Filmes.AsNoTracking().OrderBy(c => c.Id).ToPaginatedRest(page, pagesize);
+            return Ok(result);
         }
 
 
